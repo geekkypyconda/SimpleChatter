@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".VerificationCodeActivity">
+
+    <ImageView
+        android:id="@+id/VerificationCodeActivity_logo"
+        android:layout_width="261dp"
+        android:layout_height="205dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="80dp"
+
+        android:layout_marginEnd="109dp"
+        android:contentDescription="@string/sc_icon_large"
+        app:srcCompat="@drawable/sciconlarge" />
+
+
+    <TextView
+        android:id="@+id/VerificationCodeActivity_verificationCode_textView"
+        android:layout_width="251dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/Enter_your_verification_code"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/VerificationCodeActivity_verificationCode_editText"
+        android:layout_width="304dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="88dp"
+        android:autofillHints="@string/veification_code"
+        android:ems="10"
+        android:hint="@string/veification_code"
+        android:inputType="numberPassword" />
+
+    <Button
+        android:id="@+id/VerificationCodeActivity_verify_button"
+        android:layout_width="163dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_blue_light"
+        android:onClick="verifyUserCode"
+        android:text="@string/verify_button"
+        android:textSize="15sp" />
+
+</LinearLayout>

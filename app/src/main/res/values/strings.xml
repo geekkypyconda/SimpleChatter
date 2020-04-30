@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">SimpleChatter</string>
+    <string name="MainActivity_Welcome">Welcome</string>
+    <string name="send_verification_code">Send Verification Code</string>
+    <string name="Enter_your_number">Enter Your Mobile Number</string>
+    <string name="default_phone_number">123456789</string>
+    <string name="sc_icon_large">SimpleChatter Logo</string>
+    <string name="Enter_your_verification_code">Enter Verification Code</string>
+    <string name="verify_button">Verify</string>
+    <string name="veification_code">123456</string>
+
+    <string-array name="Countries">
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+        <item>+91</item>
+
+    </string-array>
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+</resources>

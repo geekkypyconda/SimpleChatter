@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "165617454834",
+    "firebase_url": "https://simplechatter-21587.firebaseio.com",
+    "project_id": "simplechatter-21587",
+    "storage_bucket": "simplechatter-21587.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165617454834:android:555d685470f300507c0a6b",
+        "android_client_info": {
+          "package_name": "com.simplechatter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165617454834-19h4ukiq58mtsifu0oo7lsr6h53aist0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.simplechatter",
+            "certificate_hash": "598b19cf92b219f2112707fda9da7f89e11a7e7f"
+          }
+        },
+        {
+          "client_id": "165617454834-nk155h3tep7g4fto19cssnkn14oqreah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGl8w3oj9N-nyBl4gBzmoyaRzIA0XyQeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165617454834-nk155h3tep7g4fto19cssnkn14oqreah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
