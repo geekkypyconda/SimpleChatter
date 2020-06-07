@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/Custom_Tool_Bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/appBlueColor"
+    android:id="@+id/Global_appBarLayout"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    android:background="@color/colorPrimary">
+
+    >
 
 </androidx.appcompat.widget.Toolbar>

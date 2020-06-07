@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/UserDisplayLayout_Main_relativeLayout"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/UserDisplayLayout_Main_linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="89dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/userdisplaylayoutbackground"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/UserDisplayLayout_circleImageView"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/userdefaultprofile" />
+
+        <LinearLayout
+            android:id="@+id/UserDisplayLayout_userInfoLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/UserDisplayLayout_userName_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/username"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/UserDisplayLayout_userAbout_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/displayUserAbout"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/UserDisplayLayout_accept_button"
+                    android:layout_width="110dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/buttons"
+                    android:text="@string/Accept"
+                    android:textAllCaps="false"
+                    android:visibility="invisible" />
+
+                <Button
+                    android:id="@+id/UserDisplayLayout_decline_button"
+                    android:layout_width="110dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="3dp"
+                    android:background="#F32E14"
+                    android:text="@string/Decline"
+                    android:textAllCaps="false"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+        <ImageView
+            android:id="@+id/UserDisplayLayout_userOnlineGreenCircle_imageVew"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="28dp"
+            android:contentDescription="@string/Online_Circle"
+            android:src="@drawable/useronlinegreencircle"
+            android:visibility="invisible"></ImageView>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

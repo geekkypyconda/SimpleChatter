@@ -8,6 +8,37 @@
     <string name="Enter_your_verification_code">Enter Verification Code</string>
     <string name="verify_button">Verify</string>
     <string name="veification_code">123456</string>
+    <string name="OR">OR</string>
+    <string name="MainActivity_signup_with_email_txt">Signup and Login Using Email and Password</string>
+    <string name="LoginWithEmailAcivity_sc_logo">sc_logo</string>
+    <string name="LoginWithEmailAcivity_login_with_text_view">Login With Email And Password</string>
+    <string name="LoginWithEmailAcivity_email_edit_text">Email</string>
+    <string name="LoginWithEmailAcivity_password_edit_text">Password at Least 9 characters</string>
+    <string name="LoginWithEmailAcivity_login_button">LOGIN</string>
+    <string name="LoginWithEmailAcivity_signup_button">SIGNUP</string>
+    <string name="LoginWithEmailAcivity_go_to_phone_number">Signup and Login With Phone Number</string>
+    <string name="home_screen_menu_newGroupApp">New Group</string>
+    <string name="home_screen_menu_settingsApp">Settings</string>
+    <string name="home_screen_menu_feedbackOfApp">Feedback</string>
+    <string name="home_screen_menu_aboutApp">About</string>
+    <string name="about">SimpleChatter V 1.0 </string>
+    <string name="about_activity_feedback_button">Send Feedback</string>
+    <string name="about_activity_reportABug_button">Report a Bug</string>
+    <string name="username">User Name</string>
+    <string name="displayName">Enter Your Display Name</string>
+    <string name="displayUserAbout">Hi! now I am also on Simple Chatter</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="enter_your_about">Your Status</string>
+    <string name="About">About</string>
+    <string name="Next">Rock\'n Roll</string>
+    <string name="simple_user">Simple User</string>
+    <string name="CCM">----- Chat Your Message</string>
+    <string name="CPN">Change Phone Number</string>
+    <string name="Sign_in_with_Email">Signup and Login Using Email and Password</string>
+    <string name="Click_to_add_image">Click to add Image</string>
+    <string name="FindChatters">Find Chatters</string>
+    <string name="Online_Circle">Show User is Online or not</string>
+
 
     <string-array name="Countries">
         <item>+91</item>
@@ -41,5 +72,21 @@
         <item>Uranus</item>
         <item>Neptune</item>
     </string-array>
+    <string name="title_activity_tabbed">TabbedActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="visit_user_name">Name</string>
+    <string name="visit_user_about">About</string>
+    <string name="send_user_request">Send Chat Request</string>
+    <string name="type_credential">Credential Type</string>
+    <string name="visit_user_credential">Credential Display Here</string>
+    <string name="note_set_up_user">Note: It might Take Some Time to retrieve The Profile Photo</string>
+    <string name="accept_user_request">Accept request</string>
+    <string name="Accept">Accept</string>
+    <string name="Decline">Decline</string>
+    <string name="LogOut">Log out</string>
 
 </resources>

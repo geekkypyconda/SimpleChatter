@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/CustomChatBar_reltiveLayout"
+    android:background="@color/appBlueColor"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/CustomChatBar_circleImageView"
+        android:layout_width="45dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/userdefaultprofile"
+        android:layout_alignParentTop="true"
+        android:cropToPadding="true"
+        android:layout_marginStart="0dp"
+        android:layout_height="45dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/CustomChatBar_displayUserName_textView"
+        android:text="@string/displayName"
+        android:layout_toRightOf="@+id/CustomChatBar_circleImageView"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:textSize="18dp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/CustomChatBar_lastSeen_textView"
+        android:layout_toRightOf="@id/CustomChatBar_circleImageView"
+        android:text="@string/displayUserAbout"
+        android:layout_marginTop="8dp"
+        android:textSize="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/CustomChatBar_displayUserName_textView"
+        android:layout_height="wrap_content"/>
+
+
+
+
+</RelativeLayout>

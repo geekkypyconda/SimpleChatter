@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/HomeScreen_relativeLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <include
-        android:id="@+id/HomeScreenActivity_customToolbar"
-        layout="@layout/custom_toolbar"
-        ></include>
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/HomeScreen_appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:background="#0875F3"
+
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id = "@+id/HomeScreen_toolBar"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#0875F3"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:layout_width="match_parent" />
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:id="@+id/HomeScreen_tabLayout"
+            app:tabGravity="fill"
+            app:tabIndicatorHeight="2.5dp"
+            app:tabTextColor="#FFFFFF"
+            app:tabIndicatorColor="#FFFFFF"
+            app:tabMode="fixed"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:layout_below="@+id/HomeScreen_appBarLayout"
+        android:id="@+id/HomeScreen_viewPager"
+        android:layout_width="match_parent"
+        app:layout_behavior = "com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

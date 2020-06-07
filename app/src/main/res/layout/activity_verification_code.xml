@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".VerificationCodeActivity">
+    tools:context=".numberemailpasssignin.VerificationCodeActivity">
 
     <ImageView
         android:id="@+id/VerificationCodeActivity_logo"
         android:layout_width="261dp"
         android:layout_height="205dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
 
         android:layout_marginEnd="109dp"
         android:contentDescription="@string/sc_icon_large"
@@ -21,10 +21,10 @@
 
     <TextView
         android:id="@+id/VerificationCodeActivity_verificationCode_textView"
-        android:layout_width="251dp"
+        android:layout_width="wrap_content"
         android:layout_height="39dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="25dp"
         android:text="@string/Enter_your_verification_code"
         android:textColor="@android:color/black"
         android:textSize="24sp"
@@ -52,5 +52,43 @@
         android:onClick="verifyUserCode"
         android:text="@string/verify_button"
         android:textSize="15sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
+        android:text="@string/CPN"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/linkBlueColor"
+        android:clickable="true"
+        android:onClick="goToMainActivity"
+
+
+        ></TextView>
+    <TextView
+        android:id="@+id/VerificationCodeActivity_OR_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="20dp"
+        android:text="@string/OR"
+        android:textAlignment="center"
+        android:textColor="@color/appBlueColor"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+
+        android:id="@+id/VerificationCodeActivity_changeNumber_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:onClick="goToEmailPasswordActivity"
+        android:text="@string/Sign_in_with_Email"
+        android:textAlignment="center"
+        android:textColor="@color/linkBlueColor"
+        android:textSize="15sp"
+        android:textStyle="normal" />
 
 </LinearLayout>

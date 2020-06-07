@@ -25,29 +25,28 @@
 
     <com.hbb20.CountryCodePicker
         android:id="@+id/ccp"
-        android:layout_width="134dp"
-        android:layout_height="57dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginEnd="6dp"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="39dp"
         android:gravity="bottom"
         app:ccp_countryPreference="us,in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/MainActivity_phoneNumber_editText"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.388"
+        app:layout_constraintVertical_bias="0.397"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/MainActivity_phoneNumber_editText"
         android:layout_width="224dp"
-        android:layout_height="57dp"
+        android:layout_height="56dp"
         android:layout_marginStart="25dp"
         android:autofillHints="@string/default_phone_number"
         android:ems="10"
         android:hint="@string/default_phone_number"
         android:inputType="phone"
+        android:background="@drawable/inputs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.901"
@@ -82,5 +81,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.26" />
+
+    <TextView
+        android:id="@+id/MainActivity_OR_textView"
+        android:layout_width="69dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/OR"
+        android:textAlignment="center"
+        android:textColor="@color/appBlueColor"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.629" />
+
+    <TextView
+        android:id="@+id/MainActivity_signupByEmail_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="goToLoginWithEmailActivity"
+        android:text="@string/MainActivity_signup_with_email_txt"
+        android:textColor="@color/linkBlueColor"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.776" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

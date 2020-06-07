@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home_screen_menu_new_group"
+        android:title="@string/home_screen_menu_newGroupApp"
+        app:showAsAction="never" />
+    <item
+        android:title="@string/FindChatters"
+        android:id="@+id/home_screen_menu_findChatters"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/home_screen_menu_settings"
+        android:title="@string/home_screen_menu_settingsApp"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/home_screen_menu_feedback"
+        android:title="@string/home_screen_menu_feedbackOfApp"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/home_screen_menu_about"
+        android:title="@string/home_screen_menu_aboutApp"
+        app:showAsAction="never"/>
+
+</menu>

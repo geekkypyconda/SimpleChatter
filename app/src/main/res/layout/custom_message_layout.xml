@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/global_custom_message_layout_RelativeLayout"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/custom_message_layout_imageView"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/userdefaultprofile"
+        android:layout_margin="5dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="@string/displayName"
+        android:background="@drawable/receiver_message_layout"
+
+        android:id="@+id/custom_message_layout_receiverMessage_TextView"
+        android:layout_toRightOf="@+id/custom_message_layout_imageView"
+        android:layout_margin="7dp"
+        android:padding="3dp"
+        android:textSize="16sp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:padding="3dp"
+        android:text="@string/displayName"
+        android:id="@+id/custom_message_layout_senderMessage_TextView"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="7dp"
+        android:textSize="16sp"
+        android:background="@drawable/sender_message_layout"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/custom_message_layout_reciever_imageView"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_alignParentStart="true"
+        android:scaleType="centerCrop"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/userdefaultprofile"/>
+
+    <ImageView
+        android:id="@+id/custom_message_layout_sender_imageView"
+        android:layout_width="125dp"
+        android:scaleType="centerCrop"
+        android:layout_margin="5dp"
+        android:layout_height="125dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/userdefaultprofile"/>
+
+
+</RelativeLayout>

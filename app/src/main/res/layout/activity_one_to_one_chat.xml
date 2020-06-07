@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chatbackgroundone"
+    android:id="@+id/OneToOneChatActivity_relativeLayout"
+    tools:context=".chatactivity.OneToOneChatActivity">
+
+    <include
+        android:id="@+id/OneToOneChatActivity_customChatBarLayout"
+        layout="@layout/app_bar_layout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/OneToOneChatActivity_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/OneToOneChatActivity_typingLinearLayout"
+        android:layout_below="@+id/OneToOneChatActivity_customChatBarLayout"
+        android:layout_marginBottom="4dp" />
+
+    <LinearLayout
+        android:id="@+id/OneToOneChatActivity_aboveLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/OneToOneChatActivity_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="50dp"
+            android:padding="10dp"
+            android:textColor="#F0000000"
+            android:textSize="16sp"
+            android:textStyle="normal"/>
+
+
+    </LinearLayout>
+
+
+
+        <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/OneToOneChatActivity_typingLinearLayout"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/OneToOneChatActivity_editText"
+                android:layout_width="310dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:autofillHints="@string/CCM"
+                android:background="@drawable/inputs"
+                android:hint="@string/CCM"
+                android:inputType="textMultiLine"
+
+                android:padding="8dp"
+                android:textSize="20sp"/>
+
+            <ImageButton
+                android:id="@+id/OneToOneChatActivity_filesIcon_imageButton"
+                android:layout_width="35dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="@color/white"
+                android:layout_marginStart="3dp"
+                android:src="@drawable/filesicon"
+                android:layout_height="35dp"/>
+
+
+
+
+        </RelativeLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/OneToOneChatActivity_imageView"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_toEndOf = "@+id/OneToOneChatActivity_typingLinearLayout"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/sendarrow"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp" />
+
+
+</RelativeLayout>

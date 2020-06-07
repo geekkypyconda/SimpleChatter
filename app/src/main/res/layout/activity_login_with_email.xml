@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+        android:id="@+id/LoginWithEmailActivity_relativeLayout"
+        android:background="@color/white"
+    >
+
+    <ImageView
+        android:id="@+id/LoginWithEmailActivity_scLogo_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="35dp"
+        android:contentDescription="@string/LoginWithEmailAcivity_sc_logo"
+        app:srcCompat="@drawable/sciconlarge" />
+
+    <TextView
+        android:id="@+id/LoginWithEmailActivity_login_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LoginWithEmailActivity_scLogo_imageView"
+        android:layout_marginTop="35dp"
+        android:text="@string/LoginWithEmailAcivity_login_with_text_view"
+        android:textAlignment="center"
+        android:textColor="@color/appBlueColor"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/LoginWithEmailActivity_email_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LoginWithEmailActivity_login_textView"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="25dp"
+        android:autofillHints="@string/LoginWithEmailAcivity_email_edit_text"
+        android:background="@drawable/inputs"
+        android:hint="@string/LoginWithEmailAcivity_email_edit_text"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:drawableStart="@drawable/emailicon"
+
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/LoginWithEmailActivity_password_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LoginWithEmailActivity_email_editText"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
+        android:autofillHints="@string/LoginWithEmailAcivity_password_edit_text"
+        android:background="@drawable/inputs"
+        android:hint="@string/LoginWithEmailAcivity_password_edit_text"
+        android:inputType="textPassword"
+        android:drawableStart="@drawable/passwordicon"
+        android:padding="10dp"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/LoginWithEmailActivity_login_button"
+        android:layout_width="135dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/LoginWithEmailActivity_password_editText"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/buttons"
+        android:onClick="loginButtonClicked"
+        android:text="@string/LoginWithEmailAcivity_login_button"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/LoginWithEmailActivity_signup_button"
+        android:layout_width="135dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/LoginWithEmailActivity_password_editText"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_toEndOf="@+id/LoginWithEmailActivity_login_button"
+        android:background="@drawable/buttons"
+
+        android:onClick="signupButtonClicked"
+        android:text="@string/LoginWithEmailAcivity_signup_button"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/LoginWithEmailActivity_OR_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LoginWithEmailActivity_login_button"
+        android:layout_marginTop="20dp"
+        android:text="@string/OR"
+        android:textAlignment="center"
+        android:textColor="@color/appBlueColor"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+
+        android:id="@+id/LoginWithEmailActivity_goToNumberSignup_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LoginWithEmailActivity_OR_textView"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:onClick="goToLoginWthNumber"
+        android:text="@string/LoginWithEmailAcivity_go_to_phone_number"
+        android:textAlignment="center"
+        android:textColor="@color/linkBlueColor"
+        android:textSize="15sp"
+        android:textStyle="normal" />
+
+
+</RelativeLayout>
