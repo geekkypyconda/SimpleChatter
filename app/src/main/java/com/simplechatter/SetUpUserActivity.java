@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,6 +56,7 @@ public class SetUpUserActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference rootRef;
     public int IMAGE_REQUEST_CODE = 1;
+    boolean logged_in,userHasMoven;
     private String userId,userName,userAbout,userImageUrl = "",backendUserEmail = "",backendUserPhoneNumber = "",deviceToken;
     private CircleImageView circleImageView;
     protected EditText userName_editText,userAbout_editText;
@@ -77,6 +79,8 @@ public class SetUpUserActivity extends AppCompatActivity {
         backendUserEmail = userIntent.getStringExtra("user_email");
         Log.d("rock","backend user Email is " + backendUserEmail);
 
+        if(backendUserEmail == null  && backendUserPhoneNumber == null)
+            moveToMainActivity();
 
         //Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -85,8 +89,8 @@ public class SetUpUserActivity extends AppCompatActivity {
         userId = mAuth.getCurrentUser().getUid();
         userProfileImageRefrences = FirebaseStorage.getInstance().getReference().child("Profile Images");
         deviceToken = FirebaseInstanceId.getInstance().getToken();
-
-                sharedPreferences = this.getSharedPreferences("com.simplechatter_user",Context.MODE_PRIVATE);
+        logged_in = isUserLoggedIn();
+        sharedPreferences = this.getSharedPreferences("com.simplechatter_user",Context.MODE_PRIVATE);
         progressDialog = new ProgressDialog(this);
         circleImageView = (CircleImageView)findViewById(R.id.SetUpUserActivity_imageView);
         textView = (TextView)findViewById(R.id.SetUpUserActivity_clickToAddImage_textView);
@@ -104,7 +108,6 @@ public class SetUpUserActivity extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
                                 mAuth.signOut();
                                 moveToMainActivity();
                                 Toast.makeText(SetUpUserActivity.this, "Logging out", Toast.LENGTH_SHORT).show();
@@ -155,7 +158,25 @@ public class SetUpUserActivity extends AppCompatActivity {
 
     }
 
+    private boolean isUserLoggedIn() {
+        rootRef.child("Users").child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild("logged_in_status") && dataSnapshot.child("logged_in_status").getValue().toString().equalsIgnoreCase("true"))
+                    logged_in = true;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return false;
+    }
+
     private void moveToMainActivity() {
+        userHasMoven = true;
+        updateUserOnlineStatus("online");
         Intent intent = new Intent(this,MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         progressDialog.dismiss();
@@ -255,14 +276,53 @@ public class SetUpUserActivity extends AppCompatActivity {
     {
         //showProgressDialog("Retrieving data");disableEveryThing();
         DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("Users/" + "name");
+        updateUserOnlineStatus("online");
         boolean b = sharedPreferences.getBoolean("set",false);
-        if(dbr != null && false){
-            Log.d("rock","user Perfectly Set Up! Now Moving To Home Screen");
-            moveToHomeScreenActivity();
+        Log.d("rock", "wasUserAlreadySetUp: Logged in is " + logged_in);
+        if(dbr != null && logged_in){
+            Log.d("rock","DBR and B not null Now checking Logged in status");
+            rootRef.child("Users").addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    if(dataSnapshot.hasChild("logged_in_status") && dataSnapshot.child("logged_in_status").getValue().toString().equalsIgnoreCase("true")){
+                        Log.d("rock","user Perfectly Set Up! Now Moving To Home Screen");
+                        String res = "dataSnapshot.hasChild(userId) :- " + dataSnapshot.hasChild(userId) + "\n" +
+                                 "dataSnapshot.child(userId).hasChild(\"logged_in_status\") :- " + dataSnapshot.hasChild("logged_in_status") + "\n" +
+                                  ""   + "dataSnapshot.child(userId).child(logged_in_status).getValue().toString().equalsIgnoreCase(true) :- " + "\n" +
+                                dataSnapshot.child("logged_in_status").getValue().toString().equalsIgnoreCase("true");
+                        Log.d("rock",res);
+                        moveToHomeScreenActivity();
+                    }else{
+                        Log.d("rock", "onChildAdded: User Has Previously logged out");
+                        retrieveUserDetails();
+                    }
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            retrieveUserDetails();
         }
 
         else if(dbr != null){
-            Log.d("rock","User Was Not Perfectly Set up!");
+            Log.d("rock","User Was Not Perfectly Set up! :: In Esle if out of data listner");
             retrieveUserDetails();
         }
         else{
@@ -335,6 +395,7 @@ public class SetUpUserActivity extends AppCompatActivity {
 
     public void moveToHomeScreenActivity()
     {
+        userHasMoven = true;
         Intent intent = new Intent(this,HomeScreenActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -368,6 +429,7 @@ public class SetUpUserActivity extends AppCompatActivity {
         map.put("name",userName);
         map.put("uid",userId);
         map.put("about",userAbout);
+        map.put("logged_in_status","true");
         map.put("image",userImageUrl);
         map.put("device_token",deviceToken);
         if(backendUserPhoneNumber == null){
@@ -501,14 +563,14 @@ public class SetUpUserActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if(mAuth.getCurrentUser() != null && !userHasMovenToHomeScreen)
+        if(mAuth.getCurrentUser() != null && !userHasMoven)
             updateUserOnlineStatus("offline");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(mAuth.getCurrentUser() != null && !userHasMovenToHomeScreen)
+        if(mAuth.getCurrentUser() != null && !userHasMoven)
             updateUserOnlineStatus("offline");
     }
 

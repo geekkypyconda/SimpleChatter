@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/chatbackgroundone"
     android:id="@+id/GroupChatActivity_relativelayout"
-    tools:context=".chatactivity.GroupChatActivity">
+    tools:context=".groupchatactivties.GroupChatActivity">
 
     <include
         layout="@layout/app_bar_layout"
@@ -13,77 +14,85 @@
         ></include>
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/GroupChatActivity_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/GroupChatActivity_typingLinearLayout"
+        android:layout_below="@+id/GroupChatActivity_appBar"
+        android:layout_marginBottom="4dp" />
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/GroupChat_aboveLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/GroupChatActivity_scrollView"
-        android:layout_above="@+id/GroupChatActivity_typingLinearLayout"
-        android:layout_marginBottom="20dp"
-        android:layout_below="@+id/GroupChatActivity_appBar">
 
+        android:orientation="vertical">
 
-
-        <LinearLayout
-            android:id="@+id/GroupChatActivity_aboveLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/GroupChatActivity_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginBottom="50dp"
-                android:padding="10dp"
-                android:textColor="#F0000000"
-                android:textSize="16sp"
-                android:textStyle="normal"
-
-
-                ></TextView>
-
-        </LinearLayout>
-
-        </ScrollView>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/GroupChat_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/GroupChatActivity_typingLinearLayout"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="50dp"
+            android:padding="10dp"
+            android:textColor="#F0000000"
+            android:textSize="16sp"
+            android:textStyle="normal"/>
 
-            <EditText
-                android:id="@+id/GroupChatActivity_editText"
-                android:layout_width="310dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="2dp"
-                android:autofillHints="@string/CCM"
-                android:background="@drawable/inputs"
-                android:hint="@string/CCM"
-                android:inputType="textMultiLine"
 
-                android:padding="8dp"
-                android:textSize="20sp"></EditText>
+    </LinearLayout>
 
 
 
-        </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/GroupChatActivity_typingLinearLayout"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/GroupChatActivity_editText"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:autofillHints="@string/CCM"
+            android:background="@drawable/inputs"
+            android:hint="@string/CCM"
+            android:inputType="textMultiLine"
+            android:layout_toRightOf="@+id/GroupChatActivity_filesIcon_imageButton"
+
+            android:padding="8dp"
+            android:textSize="20sp"/>
+
+        <ImageButton
+            android:id="@+id/GroupChatActivity_filesIcon_imageButton"
+            android:layout_width="35dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/white"
+            android:layout_marginStart="3dp"
+            android:src="@drawable/filesicon"
+            android:layout_height="35dp"/>
+
+
+
+
+    </RelativeLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/SetUpUserActivity_imageView"
+        android:id="@+id/GroupChatActivity_imageView"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="2dp"
         android:layout_toEndOf = "@+id/GroupChatActivity_typingLinearLayout"
         android:layout_alignParentBottom="true"
-        android:onClick="sendChat"
         android:src="@drawable/sendarrow"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp" />
+
 
 </RelativeLayout>

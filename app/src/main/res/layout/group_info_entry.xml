@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/GroupInfoEntry_linearLayout"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="25dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/GroupInfoEntry_enterGroupName_textView"
+            android:layout_width="wrap_content"
+            android:text="@string/enter_group_name"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/appBlueColor"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:layout_width="250dp"
+            android:layout_marginTop="5dp"
+            android:inputType="text"
+            android:autofillHints="@string/enter_group_name"
+            android:hint="@string/group_setting_name"
+            android:id="@+id/GroupInfoEntry_name_editText"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/GroupInfoEntry_enterGroupMotto_textView"
+            android:layout_width="wrap_content"
+            android:text="@string/enter_group_motto"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/appBlueColor"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/GroupInfoEntry_motto_editText"
+            android:layout_width="250dp"
+            android:inputType="text"
+            android:layout_marginTop="5dp"
+            android:autofillHints="@string/enter_group_motto"
+            android:hint = "@string/group_setting_motto"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

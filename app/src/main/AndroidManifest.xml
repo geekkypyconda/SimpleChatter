@@ -10,12 +10,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/sciconsmall"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/sciconsmall"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".chatactivity.ImageViewerActivity"></activity>
+        <activity android:name=".settingspane.AccountSettingsActivity"></activity>
+        <activity android:name=".groupchatactivties.GroupSettingsActivity" />
+        <activity android:name=".groupchatactivties.DisplayAllEditableGroupContactsActivity" />
+        <activity android:name=".chatactivity.ImageViewerActivity" />
         <activity
             android:name=".chatactivity.OneToOneChatActivity"
             android:parentActivityName=".HomeScreenActivity" />
@@ -23,7 +26,7 @@
         <activity
             android:name=".FindFriendsActivity"
             android:parentActivityName=".HomeScreenActivity" />
-        <activity android:name=".chatactivity.GroupChatActivity" />
+        <activity android:name=".groupchatactivties.GroupChatActivity" />
         <activity android:name=".AboutInfoSection.ReportBugActivity" />
         <activity android:name=".AboutInfoSection.AboutActivity" />
         <activity android:name=".AboutInfoSection.FeedbackActivity" />

@@ -32,6 +32,10 @@ import com.simplechatter.R;
 import com.simplechatter.classes.Contact;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -49,6 +53,7 @@ public class RequestFragment extends Fragment {
     private FirebaseAuth mAuth;
     private StorageReference storageRootref;
     private DatabaseReference ContactsRef;
+    private boolean userHasMoven;
     private String currentUserId = "";
 
     //Activity Components
@@ -82,15 +87,13 @@ public class RequestFragment extends Fragment {
         recyclerView = (RecyclerView)requestFragmentView.findViewById(R.id.RequestFragment_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-
-
         return requestFragmentView;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
+        updateUserOnlineStatus("online");
         FirebaseRecyclerOptions<Contact> options = new FirebaseRecyclerOptions.Builder<Contact>().setQuery(chatRequestRef.child(currentUserId),Contact.class).build();
 
         FirebaseRecyclerAdapter<Contact,RequestViewHolder> adapter = new FirebaseRecyclerAdapter<Contact, RequestViewHolder>(options) {
@@ -266,8 +269,6 @@ public class RequestFragment extends Fragment {
                                                         }
                                                     }
                                                 }).show();
-
-
                                             }
                                         });
                                     }
@@ -322,4 +323,54 @@ public class RequestFragment extends Fragment {
             declineButton = (Button)view.findViewById(R.id.UserDisplayLayout_decline_button);
         }
     }
+
+    private void updateUserOnlineStatus(String state)
+    {
+        String saveCurrentTime,saveCurrentDate;
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM,dd,yyyy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
+        saveCurrentTime= currentTime.format(calendar.getTime());
+
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("current_date",saveCurrentDate);
+        map.put("current_time",saveCurrentTime);
+        map.put("current_status",state);
+        String currentUserId = mAuth.getCurrentUser().getUid();
+        String disp = "[" + saveCurrentDate + ", " + saveCurrentTime + ", " + state + ", " + currentUserId + "]" + " From HomeScreenActivity" ;
+        Log.d("rock",disp);
+
+        databaseRootRef.child("Users").child(currentUserId).child("online_status").setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful())
+                    Log.d("rock","User online status saved SuccessFully!");
+                else
+                    Log.d("rock","User online status saving failed!");
+            }
+        });
+
+
+    }
+
+
+
+    @Override
+    public void onStop() {
+        if(!userHasMoven)
+            updateUserOnlineStatus("offline");
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        if(!userHasMoven)
+            updateUserOnlineStatus("offline");
+        super.onDestroy();
+    }
+
+
+
 }

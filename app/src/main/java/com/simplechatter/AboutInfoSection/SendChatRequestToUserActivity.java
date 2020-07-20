@@ -426,8 +426,9 @@ public class SendChatRequestToUserActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         userHasPressedBackButton = true;
+        super.onBackPressed();
+
     }
 
     @Override

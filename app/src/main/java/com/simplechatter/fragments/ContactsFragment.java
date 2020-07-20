@@ -95,7 +95,6 @@ public class ContactsFragment extends Fragment {
                         String profileName = dataSnapshot.child("name").getValue().toString();
                         String profileAbout = dataSnapshot.child("about").getValue().toString();
                         holder.userName.setText(profileName);holder.userAbout.setText(profileAbout);
-
                     }
 
                     @Override

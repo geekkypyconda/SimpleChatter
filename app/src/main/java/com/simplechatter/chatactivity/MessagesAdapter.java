@@ -35,6 +35,8 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.view.View.GONE;
+
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MessageViewHolder> {
 
 
@@ -71,7 +73,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
     public class MessageViewHolder extends RecyclerView.ViewHolder
     {
-        public TextView senderTextView,recieverTextView;
+        public TextView senderTextView,recieverTextView,senderFilesDateAndTimeTextView,recieverFilesDateAndTimeTextView;
         public CircleImageView recieverProfileImageView;
         public ImageView senderImageView,recieverImageView;
 
@@ -82,6 +84,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             recieverProfileImageView = (CircleImageView)itemView.findViewById(R.id.custom_message_layout_imageView);
             senderImageView = (ImageView)itemView.findViewById(R.id.custom_message_layout_sender_imageView);
             recieverImageView = (ImageView)itemView.findViewById(R.id.custom_message_layout_reciever_imageView);
+            senderFilesDateAndTimeTextView = (TextView)itemView.findViewById(R.id.custom_message_layout_senderFilesDateAndTime_TextView);
+            recieverFilesDateAndTimeTextView = (TextView)itemView.findViewById(R.id.custom_message_layout_receiverFilesDateAndTime_TextView);
         }
     }
 
@@ -126,11 +130,11 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             }
         });
 
-        holder.recieverTextView.setVisibility(View.GONE);
-        holder.recieverProfileImageView.setVisibility(View.GONE);
-        holder.senderTextView.setVisibility(View.GONE);
-        holder.senderImageView.setVisibility(View.GONE);
-        holder.recieverImageView.setVisibility(View.GONE);
+        holder.recieverTextView.setVisibility(GONE);
+        holder.recieverProfileImageView.setVisibility(GONE);
+        holder.senderTextView.setVisibility(GONE);
+        holder.senderImageView.setVisibility(GONE);holder.senderFilesDateAndTimeTextView.setVisibility(GONE);
+        holder.recieverImageView.setVisibility(GONE);holder.recieverFilesDateAndTimeTextView.setVisibility(GONE);
 
         if(fromMessageType.equals("text")){
 
@@ -149,43 +153,42 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             if(fromUserId.equalsIgnoreCase(senderId)){
                 holder.senderImageView.setVisibility(View.VISIBLE);
                 Picasso.get().load(message.getMessage()).placeholder(R.drawable.defaultimagesendimage).into(holder.senderImageView);
+                holder.senderFilesDateAndTimeTextView.setVisibility(View.VISIBLE);
+                holder.senderFilesDateAndTimeTextView.setText(message.getDate() + ": " + message.getTime());
             }else {
                 holder.recieverImageView.setVisibility(View.VISIBLE);
                 holder.recieverProfileImageView.setVisibility(View.VISIBLE);
                 Picasso.get().load(message.getMessage()).placeholder(R.drawable.defaultimagesendimage).into(holder.recieverImageView);
+                holder.recieverFilesDateAndTimeTextView.setVisibility(View.VISIBLE);
+                holder.recieverFilesDateAndTimeTextView.setText(message.getDate() + ": " + message.getTime());
             }
-
         }else if(fromMessageType.equalsIgnoreCase("pdf")){
             if(fromUserId.equalsIgnoreCase(senderId)){
                 holder.senderImageView.setVisibility(View.VISIBLE);
                 Picasso.get().load(R.drawable.pdffiledefaulticon).into(holder.senderImageView);
+                holder.senderFilesDateAndTimeTextView.setVisibility(View.VISIBLE);
+                holder.senderFilesDateAndTimeTextView.setText(message.getDate() + ": " + message.getTime());
 
             }else {
                 holder.recieverImageView.setVisibility(View.VISIBLE);
                 holder.recieverProfileImageView.setVisibility(View.VISIBLE);
                 Picasso.get().load(R.drawable.pdffiledefaulticon).into(holder.recieverImageView);
-
+                holder.recieverFilesDateAndTimeTextView.setVisibility(View.VISIBLE);
+                holder.recieverFilesDateAndTimeTextView.setText(message.getDate() + ": " + message.getTime());
             }
-
-
-
-
         }else if(fromMessageType.equalsIgnoreCase("document")){
             if(fromUserId.equalsIgnoreCase(senderId)){
                 holder.senderImageView.setVisibility(View.VISIBLE);
                 Picasso.get().load(R.drawable.filesdefaulticon).into(holder.senderImageView);
-
-
+                holder.senderFilesDateAndTimeTextView.setVisibility(View.VISIBLE);
+                holder.senderFilesDateAndTimeTextView.setText(message.getDate() + ": " + message.getTime());
             }else {
                 holder.recieverImageView.setVisibility(View.VISIBLE);
                 holder.recieverProfileImageView.setVisibility(View.VISIBLE);
                 Picasso.get().load(R.drawable.filesdefaulticon).into(holder.recieverImageView);
-
-
-
+                holder.recieverFilesDateAndTimeTextView.setVisibility(View.VISIBLE);
+                holder.recieverFilesDateAndTimeTextView.setText(message.getDate() + ": " + message.getTime());
             }
-
-
         }
         if(fromUserId.equalsIgnoreCase(senderId)){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -205,14 +208,40 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(which == 0){
-                                    deleteSentMessage(position,holder,messageList.get(position).getMessageId());
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(holder.itemView.getContext());
+                                    ab.setTitle("Are you Sure Want to delete this Message");
+                                    ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deleteSentMessage(position,holder,messageList.get(position).getMessageId());
+                                        }
+                                    }).setNegativeButton("Never", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).show();
+
                                 }else if(which == 1){
                                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(messageList.get(position).getMessage()));
                                     holder.itemView.getContext().startActivity(intent);
                                 }else if(which == 2){
                                     Toast.makeText(holder.itemView.getContext(), "Never Mind!", Toast.LENGTH_SHORT).show();
                                 }else if(which == 3){
-                                    deleteMessageForEveryOne(position,holder);
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(holder.itemView.getContext());
+                                    ab.setTitle("Are you Sure Want to delete this message?");
+                                    ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deleteMessageForEveryOne(position,holder);
+                                        }
+                                    }).setNegativeButton("Never", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).show();
+
                                 }
                             }
                         });
@@ -230,11 +259,36 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(which == 0){
-                                    deleteSentMessage(position,holder,messageList.get(position).getMessageId());
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(holder.itemView.getContext());
+                                    ab.setTitle("Are you Sure Want to delete this Message");
+                                    ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deleteSentMessage(position,holder,messageList.get(position).getMessageId());
+                                        }
+                                    }).setNegativeButton("Never", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).show();
                                 }else if(which == 1){
                                     Toast.makeText(holder.itemView.getContext(), "Never Mind!", Toast.LENGTH_SHORT).show();
                                 }else if(which == 2){
-                                    deleteMessageForEveryOne(position,holder);
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(holder.itemView.getContext());
+                                    ab.setTitle("Are you Sure Want to delete this Message");
+                                    ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deleteMessageForEveryOne(position,holder);
+                                        }
+                                    }).setNegativeButton("Never", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).show();
+
                                 }
                             }
                         });
@@ -255,13 +309,39 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                                 if(which == 0){
                                     Log.d("rock",messageList.get(position).toString());
                                     Log.d("rock","Message id is " + messageList.get(position).getMessageId());
-                                    deleteSentMessage(position,holder,messageList.get(position).getMessageId());
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(holder.itemView.getContext());
+                                    ab.setTitle("Are you Sure Want to delete this Message");
+                                    ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deleteSentMessage(position,holder,messageList.get(position).getMessageId());
+                                        }
+                                    }).setNegativeButton("Never", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).show();
+
                                 }else if(which == 1){
                                     moveToImageViewerActivity(position,holder);
                                 }else if(which == 2){
                                     Toast.makeText(holder.itemView.getContext(), "Never Mind!", Toast.LENGTH_SHORT).show();
                                 }else if(which == 3){
-                                    deleteMessageForEveryOne(position,holder);
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(holder.itemView.getContext());
+                                    ab.setTitle("Are you Sure Want to delete this Message");
+                                    ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deleteMessageForEveryOne(position,holder);
+                                        }
+                                    }).setNegativeButton("Never", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).show();
+
                                 }
                             }
                         });
@@ -286,7 +366,19 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(which == 0){
-                                    deleteRecieveMessage(position,holder,messageList.get(position).getMessageId());
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(holder.itemView.getContext());
+                                    ab.setTitle("Are you Sure Want to delete this Message");
+                                    ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deleteRecieveMessage(position,holder,messageList.get(position).getMessageId());
+                                        }
+                                    }).setNegativeButton("Never", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).show();
                                 }else if(which == 1){
                                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(messageList.get(position).getMessage()));
                                     holder.itemView.getContext().startActivity(intent);
@@ -308,7 +400,20 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(which == 0){
-                                    deleteRecieveMessage(position,holder,messageList.get(position).getMessageId());
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(holder.itemView.getContext());
+                                    ab.setTitle("Are you Sure Want to delete this Message");
+                                    ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deleteRecieveMessage(position,holder,messageList.get(position).getMessageId());
+                                        }
+                                    }).setNegativeButton("Never", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).show();
+
                                 }else if(which == 1){
                                     Toast.makeText(holder.itemView.getContext(), "Never Mind!", Toast.LENGTH_SHORT).show();
                                 }
@@ -323,13 +428,26 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                                         "Cancel",
 
                                 };
-                        AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext());
-                        builder.setTitle("Delete Message");
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(holder.itemView.getContext());
+                        builder.setTitle("Choose");
                         builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(which == 0){
-                                    deleteRecieveMessage(position,holder,messageList.get(position).getMessageId());
+                                    AlertDialog.Builder ab = new AlertDialog.Builder(holder.itemView.getContext());
+                                    ab.setTitle("Are you Sure Want to delete this Message");
+                                    ab.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deleteRecieveMessage(position,holder,messageList.get(position).getMessageId());
+                                        }
+                                    }).setNegativeButton("Never", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                        }
+                                    }).show();
+
 
                                 }else if(which == 1){
                                     moveToImageViewerActivity(position,holder);
@@ -361,6 +479,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 if(task.isSuccessful()){
                     Log.d("rock","Message Deleted Successfully!");
                     Toast.makeText(holder.itemView.getContext(), "Message Deleted Successfully!", Toast.LENGTH_SHORT).show();
+
                 }else{
                     Log.d("rock","Error in Deleting Messages!");
                     Toast.makeText(holder.itemView.getContext(), "Failed to delete message :: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

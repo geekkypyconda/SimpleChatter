@@ -32,13 +32,37 @@
     <string name="About">About</string>
     <string name="Next">Rock\'n Roll</string>
     <string name="simple_user">Simple User</string>
-    <string name="CCM">----- Chat Your Message</string>
+    <string name="CCM">Chat Your Message</string>
     <string name="CPN">Change Phone Number</string>
     <string name="Sign_in_with_Email">Signup and Login Using Email and Password</string>
     <string name="Click_to_add_image">Click to add Image</string>
     <string name="FindChatters">Find Chatters</string>
     <string name="Online_Circle">Show User is Online or not</string>
-
+    <string name="group_setting_name">Group Name</string>
+    <string name="group_setting_motto">Group Motto</string>
+    <string name="enter_group_name">Enter Group Name</string>
+    <string name="enter_group_motto">Enter Group Motto</string>
+    <string name="add_member">Add Member</string>
+    <string name="remove_member">Remove Member</string>
+    <string name="grpStt">Group Settings</string>
+    <string name="click_to_update_pp">click to update profile photo</string>
+    <string name="edit_username">Edit Group Name</string>
+    <string name="edit_motto">Edit Group Motto</string>
+    <string name="upBtn">Update</string>
+    <string name="resBtn">Reset</string>
+    <string name="addBtn">Add</string>
+    <string name="cnclBtn">Cancel</string>
+    <string name="ClickToSeeImage">Click To See Profile Photo</string>
+    <string name="accS">Account Settings</string>
+    <string name="lgout">Log Out</string>
+    <string name="editUserName">Edit Username</string>
+    <string name="editAbout">Edit About</string>
+    <string name="Feedback">Your Feedback is very valuable</string>
+    <string name="writeFeedback">Write Your Feedback here</string>
+    <string name="rab">Report a Bug</string>
+    <string name="snd">Send Feedback</string>
+    <string name="rnd">Report Bug</string>
+    <string name="rpt">Report</string>
 
     <string-array name="Countries">
         <item>+91</item>

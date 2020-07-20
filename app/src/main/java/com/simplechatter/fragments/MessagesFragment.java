@@ -223,25 +223,27 @@ public class MessagesFragment extends Fragment {
 
     @Override
     public void onStop() {
-        super.onStop();
         if(mAuth.getCurrentUser() != null  && !UserHasMovenToOneToOneChatActivity){
             updateUserOnlineStatus("offline");
             Log.d("rock","Making User Offline from Messages Fragment  in onStop() " + "\n" +
                     "Curent Moving  state is " + UserHasMovenToOneToOneChatActivity);
         }
+        super.onStop();
+
 
     }
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+
         if(mAuth.getCurrentUser() != null && !UserHasMovenToOneToOneChatActivity){
             updateUserOnlineStatus("offline");
             Log.d("rock","Making User Offline from Messages Fragment  in onDestroy() " + "\n" +
                     "Curent Moving  state is " + UserHasMovenToOneToOneChatActivity);
         }
-
+        super.onDestroy();
     }
+
 
 
 }

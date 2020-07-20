@@ -73,7 +73,9 @@ public class VerificationCodeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         userNumber = intent.getStringExtra("number");
-
+        if(userNumber == null || userNumber.equalsIgnoreCase("")){
+            moveToMainActivity();
+        }
         Log.d(TAG,"User number is " + userNumber);
         
 
@@ -130,7 +132,15 @@ public class VerificationCodeActivity extends AppCompatActivity {
 //
 //    }
     private boolean isUserLoggedIn() {
+
         return false;
+    }
+
+    public void moveToMainActivity()
+    {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void moveToSetUpUserActivity() {

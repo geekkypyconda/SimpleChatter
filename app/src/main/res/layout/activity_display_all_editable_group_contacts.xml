@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".groupchatactivties.DisplayAllEditableGroupContactsActivity">
+
+    <include
+        layout="@layout/app_bar_layout"
+        android:id="@+id/DisplayAllEditableGroupContactsActivity_appBar">
+
+    </include>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/DisplayAllEditableGroupContactsActivity_RecyclerView"
+        android:layout_below="@+id/DisplayAllEditableGroupContactsActivity_appBar"
+        android:layout_above="@+id/DisplayAllEditableGroupContactsActivity_bottomLinearLayout"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/DisplayAllEditableGroupContactsActivity_bottomLinearLayout"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/DisplayAllEditableGroupContactsActivity_cancelButton"
+            android:layout_width="115dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/cnclBtn"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="false"
+            android:background="#F0EF1010"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_height="45dp"/>
+
+        <Button
+            android:id="@+id/DisplayAllEditableGroupContactsActivity_AddButton"
+            android:layout_width="115dp"
+            android:layout_marginLeft="85dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/addBtn"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="false"
+            android:background="@color/appBlueColor"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_height="45dp"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

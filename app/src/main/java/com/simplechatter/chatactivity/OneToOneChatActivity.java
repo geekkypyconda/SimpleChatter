@@ -79,7 +79,8 @@ public class OneToOneChatActivity extends AppCompatActivity {
     private ImageButton sendFilesButton;
     private EditText editText;
     private TextView displayReceiverNameTextView,displayReceiverLastSeenTextView;
-    private  List<Message> messageList = new ArrayList<>();
+    private List<Message> messageList = new ArrayList<>();
+    private ArrayList<String> messageIdArrayList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
     private MessagesAdapter messagesAdapter;
     private int IMAGE_REQUEST_CODE = 1,PDF_REQUEST_CODE = 2,DOCUMENT_REQUEST_CODE = 3;
@@ -237,7 +238,7 @@ public class OneToOneChatActivity extends AppCompatActivity {
                             messageTextBody.put("type","image");
                             messageTextBody.put("from",senderId);
                             messageTextBody.put("to",receiverId);
-                            messageTextBody.put("message_id",messageKeyId);
+                            messageTextBody.put("messageId",messageKeyId);
                             messageTextBody.put("date",saveCurrentDate);
                             messageTextBody.put("time",saveCurrentTime);
 
@@ -307,7 +308,7 @@ public class OneToOneChatActivity extends AppCompatActivity {
                                 messageTextBody.put("type","pdf");
                                 messageTextBody.put("from",senderId);
                                 messageTextBody.put("to",receiverId);
-                                messageTextBody.put("message_id",messageKeyId);
+                                messageTextBody.put("messageId",messageKeyId);
                                 messageTextBody.put("date",saveCurrentDate);
                                 messageTextBody.put("time",saveCurrentTime);
 
@@ -384,7 +385,7 @@ public class OneToOneChatActivity extends AppCompatActivity {
                                messageTextBody.put("type","document");
                                messageTextBody.put("from",senderId);
                                messageTextBody.put("to",receiverId);
-                               messageTextBody.put("message_id",messageKeyId);
+                               messageTextBody.put("messageId",messageKeyId);
                                messageTextBody.put("date",saveCurrentDate);
                                messageTextBody.put("time",saveCurrentTime);
 
@@ -439,6 +440,7 @@ public class OneToOneChatActivity extends AppCompatActivity {
             updateUserOnlineStatus("online");
             Log.d("rock","Making User Online from OneToOneChatActivity in onStart() current backPressed State is " + userHasPressedBackButton);
             messageList.clear();
+            messageIdArrayList.clear();
             displayLastSeen();
         }
 
@@ -447,8 +449,10 @@ public class OneToOneChatActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 Message message = dataSnapshot.getValue(Message.class);
-                messageList.add(message);
-                messagesAdapter.notifyDataSetChanged();
+                if(!messageList.contains(message) && !messageIdArrayList.contains(message.getMessageId())) {
+                    messageList.add(message);messageIdArrayList.add(message.getMessageId());
+                    messagesAdapter.notifyDataSetChanged();
+                }
 
                 recyclerView.smoothScrollToPosition(recyclerView.getAdapter().getItemCount());
                 displayLastSeen();
@@ -508,7 +512,7 @@ public class OneToOneChatActivity extends AppCompatActivity {
             messageTextBody.put("type","text");
             messageTextBody.put("from",senderId);
             messageTextBody.put("to",receiverId);
-            messageTextBody.put("message_id",messageKeyId);
+            messageTextBody.put("messageId",messageKeyId);
             messageTextBody.put("date",saveCurrentDate);
             messageTextBody.put("time",saveCurrentTime);
 
@@ -596,10 +600,9 @@ public class OneToOneChatActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!userHasPressedBackButton){
-            userHasPressedBackButton = true;
-            super.onBackPressed();
-        }
+        userHasPressedBackButton = true;
+        super.onBackPressed();
+
 
     }
 
@@ -616,6 +619,7 @@ public class OneToOneChatActivity extends AppCompatActivity {
         if(mAuth.getCurrentUser() != null && !userHasPressedBackButton)
             updateUserOnlineStatus("offline");
     }
+
 
 
 }

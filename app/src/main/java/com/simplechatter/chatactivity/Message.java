@@ -1,7 +1,7 @@
 package com.simplechatter.chatactivity;
 
 public class Message {
-    private String from,message,type,to,messageId,date,time,name;
+    private String from,message,type,to,messageId,date,time,name,groupId;
 
     public Message() {
     }
@@ -16,6 +16,26 @@ public class Message {
         this.date = date;
         this.time = time;
         this.name = name;
+    }
+
+    public Message(String from, String message, String type, String to, String messageId, String date, String time, String name, String groupId) {
+        this.from = from;
+        this.message = message;
+        this.type = type;
+        this.to = to;
+        this.messageId = messageId;
+        this.date = date;
+        this.time = time;
+        this.name = name;
+        this.groupId = groupId;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public String getFrom() {

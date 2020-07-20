@@ -5,8 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".fragments.GroupsFragment">
 
-    <ListView
-        android:id="@+id/GroupFragment_listView"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/GroupsFragment_recyclerView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+
+        android:layout_height="match_parent"/>
+
 </RelativeLayout>

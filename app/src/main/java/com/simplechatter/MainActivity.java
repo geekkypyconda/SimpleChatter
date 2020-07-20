@@ -22,6 +22,7 @@ import com.simplechatter.numberemailpasssignin.VerificationCodeActivity;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editText;
+    private static final String TAG = "MainActivity";
     private boolean doubleBackToExitPressedOnce = false;
     private Button button;
     private TextView t1,t2;
@@ -53,18 +54,24 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         if(FirebaseAuth.getInstance().getCurrentUser() != null){
             if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()){
+                Log.d(TAG, "onStart: Moving to setup user activity from 1");
                 Intent intent = new Intent(new Intent(this,SetUpUserActivity.class));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("user_email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 startActivity(intent);
                 finish();
             }else if(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber() != null){
+                Log.d(TAG, "onStart: Moving to setup user activity from 2 " + FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber());
                 Intent intent = new Intent(new Intent(this,SetUpUserActivity.class));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("user_number",FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber());
                 startActivity(intent);
                 finish();
             }else if(!FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()){
+                Log.d(TAG, "onStart: Moving to email activity from 3");
                 Intent intent = new Intent(new Intent(this,LoginWithEmailActivity.class));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("user_email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 startActivity(intent);
                 finish();
             }

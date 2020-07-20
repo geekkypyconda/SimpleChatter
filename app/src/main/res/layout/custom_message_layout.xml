@@ -33,6 +33,7 @@
         android:background="@drawable/sender_message_layout"
         android:layout_height="wrap_content"/>
 
+
     <ImageView
         android:id="@+id/custom_message_layout_reciever_imageView"
         android:layout_width="125dp"
@@ -43,6 +44,17 @@
         android:layout_marginTop="10dp"
         android:src="@drawable/userdefaultprofile"/>
 
+    <TextView
+        android:layout_width="120dp"
+        android:text="@string/displayName"
+        android:background="@drawable/receiver_message_layout"
+        android:id="@+id/custom_message_layout_receiverFilesDateAndTime_TextView"
+        android:layout_toRightOf="@+id/custom_message_layout_imageView"
+        android:layout_below="@+id/custom_message_layout_reciever_imageView"
+        android:padding="3dp"
+        android:textSize="12sp"
+        android:layout_height="wrap_content"/>
+
     <ImageView
         android:id="@+id/custom_message_layout_sender_imageView"
         android:layout_width="125dp"
@@ -52,5 +64,17 @@
         android:layout_alignParentEnd="true"
         android:src="@drawable/userdefaultprofile"/>
 
+    <TextView
+        android:layout_width="120dp"
+        android:padding="3dp"
+        android:text="@string/displayName"
+        android:id="@+id/custom_message_layout_senderFilesDateAndTime_TextView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="7dp"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/custom_message_layout_sender_imageView"
+        android:background="@drawable/sender_message_layout"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

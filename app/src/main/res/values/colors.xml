@@ -6,4 +6,5 @@
     <color name="appBlueColor">#10BAE4</color>
     <color name="white">#FFFFFF</color>
     <color name="linkBlueColor">#14F3FF</color>
+    <color name="greenSelectColor">#9F5CC30F</color>
 </resources>
