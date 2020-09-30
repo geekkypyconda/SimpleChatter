@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         t1 = (TextView)findViewById(R.id.MainActivity_welcome_textView); t2 = (TextView)findViewById(R.id.MainActivity_phoneNumber_editText);
 //        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 //                R.array.planets_array, android.R.layout.simple_spinner_item);
-
+        
 
     }
 
